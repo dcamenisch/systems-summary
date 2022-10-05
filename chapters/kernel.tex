@@ -1,15 +1,15 @@
 \section{The Kernel}
 
-These are the main functions of any operating system. Commonly they are refereed to from a designer's view, but the user's view can be much more helpful to actually understand how it works.
+These are the main functions of any operating system. Commonly they are referred to from a designer's view, but the user's view can be much more helpful to actually understand how it works.
 
 \begin{center}
 	\includegraphics[width=\linewidth]{os-functions.png}
 \end{center}
 
 
-\subsection{Bootstraping}
+\subsection{Bootstrapping}
 
-The term bootstraping referees to pulling himself up from his own boots. In computer systems it is why we call the process of starting up a computer booting. This boot process looks like this:
+The term bootstrapping refers to pulling himself up from his own boots. In Computer Systems it is what we call the process of starting up a computer (booting). This boot process looks like this:
 
 \begin{enumerate}
 	\item CPU starts executing code at a fixed address (Boot ROM)
@@ -26,7 +26,7 @@ The first few lines are always written in assembly, but generally we want to swi
 One of our main goals is to protect the OS from applications that could harm it (intentionally or not). For this purpose we introduce two different modes:
 
 \begin{itemize}
-	\item Kernel mode - execution with full privileges, read/write to any memory, access and I/O, etc. code here must be carefully written
+	\item Kernel mode - execution with full privileges, read/write to any memory, access and I/O, etc. Code here must be carefully written
 	\item User mode - limited privileges, only those granted by the OS kernel
 \end{itemize}
 
@@ -39,13 +39,13 @@ These two (or more) modes are already implemented in hardware. The main reason f
 	\item Jump to this address
 \end{enumerate}
 
-Further we may also want to save the registers and switch page tables. When switching between the modes we also have to change our address space, but we might want to access some informations from the user mode address space. One way of doing this is to use a so called \textbf{trampoline}, this is a part of the address space that gets mapped to the same location in user and kernel mode.
+Further we may also want to save the registers and switch page tables. When switching between the modes we also have to change our address space, but we might want to access some informations from the user mode address space. One way of doing this is to use a so called \textbf{trampoline}, which is a part of the address space that gets mapped to the same location in user and kernel mode.
 
 \begin{center}
 	\includegraphics[width=0.4\linewidth]{trampoline.png}
 \end{center}
 
-Mode switches can also occur the other way around (from kernel mode to user mode). The mains reasons for this are:
+Mode switches can also occur the other way around (from kernel mode to user mode). The main reasons for this are:
 
 \begin{itemize}
 	\item New process / thread start
@@ -86,7 +86,7 @@ We can differentiate between monolithic kernels and microkernels, depending on t
 
 \subsection{System Calls}
 
-System calls are the only way for user mode programs to enter kernel mode. System calls are a type of exception, but they try to look a lot more like a procedure call. Therefore the kernel system call handler has to first locate arguments, copy these arguments into kernel memory, validate these arguments and the copy the results back into user memory after execution. An example of such a system call would be \textit{write()}. 
+System calls are the only way for user mode programs to enter kernel mode. System calls are a type of exception, but they try to look a lot more like a procedure call. Therefore the kernel system call handler has to first locate arguments, copy these arguments into kernel memory, validate these arguments and then copy the results back into user memory after execution. An example of such a system call would be \textit{write()}. 
 
 
 \subsection{Hardware Timers}
