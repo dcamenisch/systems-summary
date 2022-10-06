@@ -1,6 +1,6 @@
 \section{Processes}
 
-When you run a program, the OS creates a process to execute the program in. A process is an illusion created by the OS. It is an execution environment for a program. This environment gives the program limited rights (access, name spaces, threads, etc.) and therefore it is both a security and a resource principle.
+When you run a program, the OS creates a process to execute the program in. A process is an illusion created by the OS. It is an execution environment for a program. This environment gives the program limited rights (access, name spaces, threads, etc.) and therefore it is both a security and a resource principal.
 
 
 \subsection{Creating a Process}
@@ -40,14 +40,14 @@ In contrast to \textit{spawn()}, here the child revokes rights and access explic
 
 \subsection{The Process Control Block}
 
-The PCB is the main kernel data structure used to represent a process. It has to hold or refer to page table, trap frame, kernel stack, open files, program name, scheduling state, PID, etc.
+The PCB is the main kernel data structure used to represent a process. It has to hold or refer to the page table, trap frame, kernel stack, open files, program name, scheduling state, PID, etc.
 
 
 \subsection{Process Context Switching}
 
 Context switching is the process of switching between different processes running in user mode or kernel mode. It is one of the key elements of the illusion that multiple programs can run in parallel.
 
-First we want to know, when does the kernel switch processes. There are two main reasons for this, first when a process has run for too long and gets interrupted by a hardware timer, secondly when a process blocks. The second case happens when a system call can not complete immediately. The process then often calls \textit{sleep()} and other processes can be executed.
+There are two main reasons for the kernel to switch processes: either when a process has run for too long and gets interrupted by a hardware timer or when a process blocks. The second case happens when a system call can not complete immediately. The process then often calls \textit{sleep()} and other processes can be executed.
 \begin{center}
 	\includegraphics[width=\linewidth]{context-switching.png}
 \end{center}
