@@ -11,7 +11,6 @@ The \textbf{device driver} for a particular device is the software in the OS whi
 \textbf {Programmed I/O} consists of causing input/output to occur by reading/writing data values to hardware registers. This is the simples form of communication. It is fully synchronous, so the CPU always has to be involved. Further it is polled, the device has no way to signal that new data is ready. \medskip
 
 \textbf{Interrupts} can be used to signal the availability of new data and solve the polling problem. But the problem of CPU involvement still persists.
-
 \begin{center}
 	\includegraphics[width=\linewidth]{data_transfer_interrupt.png}
 \end{center}
