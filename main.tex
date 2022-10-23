@@ -7,6 +7,12 @@
 \usepackage{ccicons}
 \usepackage{hyperref}
 
+
+\usepackage[boxruled, linesnumbered]{algorithm2e}
+
+%% This declares a command \Comment
+\SetKwComment{Comment}{/* }{ */}
+
 \usepackage[dvipsnames]{xcolor}
 
 % Set page margins
@@ -54,7 +60,8 @@
 	\Large{\textbf{Distributed Systems}}
 \end{center}
 
-
+\input{chapters/motivation-distributed.tex}
+\input{chapters/fault-tolerance-paxos.tex}
 
 \end{multicols*}
 \end{document}
