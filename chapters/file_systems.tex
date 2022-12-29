@@ -65,7 +65,7 @@ The main goals of concrete file system implementations depend on the device it i
 
 FAT (file allocation table) is a very basic file system.
 \begin{center}
-	\includegraphics[width=\linewidth]{fat.png}
+	\includegraphics[width=0.9\linewidth]{fat.png}
 \end{center}
 
 For naming, the FAT system uses the filename and the extension. It then remembers the first block of that file. The file allocation table itself works like a linked list of blocks, where at the end of each block there is a pointer to the next block. To allocate new space, we simply need to scan the table. This can lead to very poor locality (fragmentation).
@@ -73,7 +73,7 @@ For naming, the FAT system uses the filename and the extension. It then remember
 \subsubsection{The Berkeley Fast Filing System}
 
 \begin{center}
-	\includegraphics[width=\linewidth]{bffs.png}
+	\includegraphics[width=0.8\linewidth]{bffs.png}
 \end{center}
 
 This system uses an index node (inode) for each file in the file system. The inode consists of the metadata and block pointers (or data directly if it fits). To allocate blocks it uses a bitmap indicating if a block is free or not. \medskip

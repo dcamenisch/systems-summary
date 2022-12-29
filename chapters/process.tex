@@ -1,6 +1,6 @@
 \section{Processes}
 
-When you run a program, the OS creates a process to execute the program in. A process is an illusion created by the OS. It is an execution environment for a program. This environment gives the program limited rights (access, name spaces, threads, etc.) and therefore it is both a security and a resource principal.
+When you run a program, the OS creates a process to execute the program in. A process is an illusion created by the OS, it creates an execution environment for a program. This environment gives the program limited rights (access, name spaces, threads, etc.) and therefore it is both a security and a resource principal.
 
 
 \subsection{Creating a Process}
@@ -45,7 +45,7 @@ The PCB is the main kernel data structure used to represent a process. It has to
 
 \subsection{Process Context Switching}
 
-Context switching is the process of switching between different processes running in user mode or kernel mode. It is one of the key elements of the illusion that multiple programs can run in parallel.
+Context switching is the process of switching between different processes running in user mode or kernel mode. It is one of the key elements of the illusion that multiple programs can run in parallel. \columnbreak
 
 There are two main reasons for the kernel to switch processes: either when a process has run for too long and gets interrupted by a hardware timer or when a process blocks. The second case happens when a system call can not complete immediately. The process then often calls \textit{sleep()} and other processes can be executed.
 \begin{center}
@@ -61,3 +61,10 @@ By forking and spawning new processes we create sort of a hierarchy. If a child 
 \end{center}
 
 The \textit{init} process is basically an infinite loop calling \textit{wait}(NULL), it gets rid of any zombies.
+
+
+\subsection{Threads}
+
+Threads are used as an abstraction for concurrency. They allow the usage of parallel hardware, e.g. multiple cores. A thread basically consist of a stack and some register values.\medskip
+
+There is a distinction between \textbf{user threads} and \textbf{kernel threads}. The former are implemented entirely in user’s process. If a user thread is about to block (e.g. when executing a system call), the thread library usually interrupts this call and does something non blocking instead while the system call is served. Kernel threads are implemented by the OS kernel directly. They thus appear as different virtual processors to the user process. In this model, a set of threads share a virtual address space together. Each thread is now scheduled by the kernel itself, which keeps track of threads are part of which process. However, this makes the kernel more complicated.

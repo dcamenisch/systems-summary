@@ -42,7 +42,7 @@ There are different approaches to dealing with non strictly virtualizable ISA:
 With virutalization, there is a second level of indirection with memory addresses. Now, a physical memory address is not unique in the machine, but in one VM (guest OS thinks it is physical). Thus, we define the \textbf{machine address} to be a real address on the machine which gets translated from the guest OSs physical address. From the view of the hypervisor, the machine address is the physical address.
 
 \begin{center}
-	\includegraphics[width=0.8\linewidth]{virtual_mmu.png}
+	\includegraphics[width=0.7\linewidth]{virtual_mmu.png}
 \end{center}
 
 The hypervisor thus needs to translate a guest virtual address not to a guest physical address but to a machine address instead. There are several ways to do so:

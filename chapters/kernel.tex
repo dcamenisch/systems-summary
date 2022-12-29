@@ -1,6 +1,6 @@
 \section{The Kernel}
 
-These are the main functions of any operating system. Commonly they are referred to from a designer's view, but the user's view can be much more helpful to actually understand how it works.
+There are three main functions to an OS. Commonly they are referred to from a designer's view, but the user's view can be much more helpful to actually understand how it works.
 
 \begin{center}
 	\includegraphics[width=\linewidth]{os-functions.png}
@@ -9,7 +9,7 @@ These are the main functions of any operating system. Commonly they are referred
 
 \subsection{Bootstrapping}
 
-The term bootstrapping refers to pulling himself up from his own boots. In Computer Systems it is what we call the process of starting up a computer (booting). This boot process looks like this:
+The term bootstrapping refers to pulling himself up from his own boots. In computer systems it is what we call the process of starting up a computer (booting). This boot process looks like this:
 
 \begin{enumerate}
 	\item CPU starts executing code at a fixed address (Boot ROM)
@@ -26,8 +26,8 @@ The first few lines are always written in assembly, but generally we want to swi
 One of our main goals is to protect the OS from applications that could harm it (intentionally or not). For this purpose we introduce two different modes:
 
 \begin{itemize}
-	\item Kernel mode - execution with full privileges, read/write to any memory, access and I/O, etc. Code here must be carefully written
-	\item User mode - limited privileges, only those granted by the OS kernel
+	\item \textbf{Kernel Mode} - execution with full privileges, read/write to any memory, access and I/O, etc. Code here must be carefully written
+	\item \textbf{User Mode} - limited privileges, only those granted by the OS kernel
 \end{itemize}
 
 These two (or more) modes are already implemented in hardware. The main reason for a mode switch is when we encounter a processor exception (mode switch from user to kernel mode). If this is the case, we want the following to happen:
@@ -76,9 +76,9 @@ The mode switch is fundamental to modern computers:
 \end{center}
 
 \begin{itemize}
-	\item Kernel - code that runs in kernel mode
-	\item System Library - interface to kernel, enough for most programs
-	\item Daemon - user space process which provides OS services, varying levels of privileges
+	\item \textbf{Kernel}: The kernel consists of software run in privileged mode. There might be more than one kernel in an OS. It can handle system calls, h/w interrupts etc.
+	\item \textbf{System Libraries}: They are part of any application run on the machine and should provide an interface for the kernel.
+	\item \textbf{Daemon}: This is a process running as part of the OS. It’s not run in privileged mode and may use system libraries. An example might be a file system.
 \end{itemize}
 
 We can differentiate between monolithic kernels and microkernels, depending on the amount of code in kernel mode.
