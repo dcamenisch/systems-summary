@@ -47,7 +47,7 @@ The downside of this algorithm is that the serializer is a single point of failu
 
 Instead of directly establishing a consistent order of commands, we can use a different approach: We make sure that there is always at most one client sending a command; i.e., we use mutual exclusion, respectively locking. \medskip
 
-Still there are quite some problems with this algorithm. What happens if the node holding the locks crashes or it only gets part of the locks?
+Still there are quite some problems with this algorithm. What happens if the node holding the locks crashes?
 
 \subsection{Paxos}
 
@@ -73,7 +73,7 @@ There is no more problem with crashes: If a client crashes while holding a ticke
 	\BlankLine
 	\Comment{Phase 2}
 	\If{a majority answers ok}{
-		Pick($T_{store}, C$) with largest $T_{store}$
+		Pick($T_{store}, C$) with largest $T_{store}$ \\
 		\If{$T_{store} > 0$}{
 			$c = C$
 		}
