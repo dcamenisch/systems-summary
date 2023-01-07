@@ -32,14 +32,14 @@ There are different approaches to dealing with non strictly virtualizable ISA:
 \begin{itemize}
 	\item \textbf{Full software emulation}: Creates a virtual machine by interpreting all kernel-mode code in software. This is very slow, especially for many I/O operations.
 	\item \textbf{Paravirtualization}: A paravirtualized guest OS is one which has been specifically modified to run inside a VM. Critical calls are replaced with explicit trap instructions.
-	\item \textbf{Binary rewriting}: Scans compiled kernel code for unvirtualizable instructions and rewrites them – essentially patching the kernel on the fly. This is done on demand: All kernel pages are first protected and when first accessed (i.e., the pro- tection trap occurs), they get scanned and rewritten.	
+	\item \textbf{Binary rewriting}: Scans compiled kernel code for unvirtualizable instructions and rewrites them – essentially patching the kernel on the fly. This is done on demand: All kernel pages are first protected and when first accessed (i.e., the protection trap occurs), they get scanned and rewritten.	
 	\item \textbf{Virtualization extensions}: Convert ISA by adding virtualization extensions. This typically takes the form of a new processor mode. Today, both ARM and x86 do have hardware support for virtualization.
 \end{itemize}
 
 
-\subsection{Viratualizing the MMU}
+\subsection{Virtualizing the MMU}
 
-With virutalization, there is a second level of indirection with memory addresses. Now, a physical memory address is not unique in the machine, but in one VM (guest OS thinks it is physical). Thus, we define the \textbf{machine address} to be a real address on the machine which gets translated from the guest OSs physical address. From the view of the hypervisor, the machine address is the physical address.
+With virtualization, there is a second level of indirection with memory addresses. Now, a physical memory address is not unique in the machine, but in one VM (guest OS thinks it is physical). Thus, we define the \textbf{machine address} to be a real address on the machine which gets translated from the guest OSs physical address. From the view of the hypervisor, the machine address is the physical address.
 
 \begin{center}
 	\includegraphics[width=0.7\linewidth]{virtual_mmu.png}
@@ -55,7 +55,7 @@ The hypervisor thus needs to translate a guest virtual address not to a guest ph
 \end{itemize}
 
 
-\subsection{Viratualizing the Physical Memory}
+\subsection{Virtualizing the Physical Memory}
 
 How can the hypervisor allocate memory to a guest OS? The guest OS expects a fixed area of physical memory which does not change dynamically. In theory, this problem can be solved with paging. However, there is a phenomenon called \textbf{double paging}. Consider the following sequence of events:
 \begin{enumerate}
@@ -84,7 +84,7 @@ Reallocating machine memory to the VM (deflating the balloon) can be done simila
 \end{enumerate}
 
 
-\subsection{Viratualizing the Devices}
+\subsection{Virtualizing the Devices}
 
 To software, a device is something that the kernel communicates using memory mapped I/O registers, interrupts from the device to the CPU and DMA access by the device to/from main memory. The hypervisor needs to virtualize all of this, too.\medskip
 
@@ -101,7 +101,7 @@ A \textbf{self-virtualizing} device is a hardware device which is designed to be
 Single-Root I/O Virtualization (SR-IOV) is an extension to the PCIe standard which is designed to give VMs fast, direct but safe access to real hardware. An SR-IOV capable device appears initially as a single PCI device. This device can be configured to make further virtual functions appear in the PCI device space: each of this is a restricted version, but otherwise looks like a completely different, new device.
 
 
-\subsection{Viratualizing the Network}
+\subsection{Virtualizing the Network}
 
 A soft switch is a network switch implementation inside a hypervisor which switches network packets sent from paravirtualized network interfaces in VMs to other VMs and/or one or more physical network interfaces.\medskip
 
