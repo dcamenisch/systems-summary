@@ -79,7 +79,7 @@ If the reverse implication also holds, then the clock is called a \textbf{strong
 This is not an implementation of a strong log- ical clock. To achieve this, nodes also have to gather information about other clocks in the system. We can do this with \textbf{vector clocks}: \medskip
 
 \begin{algorithm}[H]
-\caption{Lamport Clock}
+\caption{Vector Clock}
 	Initialize $c_u[v] := 0$ for all other nodes $v$ \\
 	Upon local operation: Increment current local time $c_u[u] := c_u[u] + 1$ \\
 	Upon send operation: Increment $c_u[u] := c_u[u] + 1$ and include the vector $c_u$ as $d$ in message \\
