@@ -96,7 +96,7 @@ For the device drivers talking to the real devices, we have the option to put th
 
 A \textbf{driver domain} is a virtual machine whose purpose it is to provide drivers for devices using device passthrough. With this, we can share devices across multiple VMs, by exporting a different to these devices using inter-VM communication channels. They are great for compatibility, but can be very slow, due to the communication overhead.\medskip
 
-A \textbf{self-virtualizing} device is a hardware device which is designed to be shared be- tween different VMs by having different parts of the device mapped into each VM’s physical address space. \textbf{SR-IOV} is one form of this. \medskip
+A \textbf{self-virtualizing} device is a hardware device which is designed to be shared between different VMs by having different parts of the device mapped into each VM’s physical address space. \textbf{SR-IOV} is one form of this. \medskip
 
 Single-Root I/O Virtualization (SR-IOV) is an extension to the PCIe standard which is designed to give VMs fast, direct but safe access to real hardware. An SR-IOV capable device appears initially as a single PCI device. This device can be configured to make further virtual functions appear in the PCI device space: each of this is a restricted version, but otherwise looks like a completely different, new device.
 
